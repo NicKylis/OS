@@ -1,0 +1,23 @@
+i.
+In order to execute any of the example codes, simply type the command gcc exampleX.c -o nameOfChoice, where X = 1,2,3,4,5. This will compile the example codes and all that is needed
+to execute them is to type ./nameOfChoice
+-example1 creates a child process that executes some work (prints a message and lists some files) and waits for it to finish.
+-example2 prints the process' and its parent ids
+-example3 prints the current running process, waits for the Ctrl+C signal, then terminates the process
+-example4 blocks the Ctrl+C from its normal behaviour, not allowing the process to be terminated
+-example5 creates a custom signal for parent-child process communication
+ii.
+-example1 can be used for independent parallel working e.g. executing ls -l in quiz-4 and in quiz-3 should output all the files in quiz-3,4 with their details
+-example2 can be used to indentify which process is executed. Example output: current proccess id: 0 parent process id: 1
+-example3 can be used for terminating an infinite process with a signal e.g. Ctrl+C
+-example4 can be used when the process is storing files, to prevent them from corruption. It could print the message: "Currently storing files.. please wait"
+-example5 can be used to access a key by many processes e.g. semaphore interpretation.
+iii.
+-example1: pid_t pid registers the process pid and pid = fork() executes it. getpid() and getppid() commands take the id from the current and its parents' process.
+	   execlp locates a path and executes a command (ls -l)
+-example2: registers two processes (pid, ppid) with pid_t pid,ppid and gives them their respective ids as argument (lines 9 and 12)
+-example3: the function sigint_handler is the function called when the signal is caught. It prints a message and exits the process. signal(SIGINT, sigint_handler) initializes
+           the function that will be used when the signal is caught. The while loop is delaying the program for infinity to wait for the signal.
+-example4: similar to example3 but the function sigint_handler instead of killing the process, ignores the signal
+-example5: similarly with example1, a child process is created with fork() which then waits for a signal (sigusr1) from the parent with pause(). Then does some work while
+           the parent process is waiting with sleep(1). At last, the child process is terminated.
