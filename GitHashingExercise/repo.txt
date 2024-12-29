@@ -1,0 +1,5 @@
+git@github.com:NicKylis/OS.git
+OR
+https://github.com/NicKylis/OS.git
+both links work
+It is the same repo with the lab one, so search for the GitHashingExercise folder in the main branch.
